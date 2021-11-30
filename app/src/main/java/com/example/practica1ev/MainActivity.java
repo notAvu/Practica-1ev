@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
@@ -18,14 +19,17 @@ import android.widget.TextView;
 import com.example.practica1ev.empresaClases.Empresa;
 import com.example.practica1ev.empresaClases.EmpresaNormal;
 import com.example.practica1ev.empresaClases.EmpresaTic;
+import com.example.practica1ev.viewHolders.NewViewHolder;
+import com.example.practica1ev.viewHolders.ViewHolder;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ListView lv;
     AutoCompleteTextView actv;
     Empresa[] listadoEmpresas = {
             new EmpresaTic(R.drawable.embeces, "EmpresaTic", "https//enlace_completamente_normal.com", "Calle melancolia 7", "empresaTic@gmail.com"),
-            new EmpresaNormal(R.drawable.embeces, "EmpresaNormal", "055")
+            new EmpresaNormal(R.drawable.embeces, "EmpresaNormal", "055"), new EmpresaNormal(R.drawable.embeces, "LaotraEmpresa", "6024"),
+            new EmpresaTic(R.drawable.embeces, "EmpresaRandom", "https//estafa_piramidal.com", "Avda de la plata 23", "empresaFalsa@gmail.com")
     };
 
     @Override
@@ -33,106 +37,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv = findViewById(R.id.listado);
-        actv.findViewById(R.id.barra);
+        actv=findViewById(R.id.barra);
+        MyAdapter<Empresa> adaptateur= new MyAdapter<>(this, R.layout.regular_layout, listadoEmpresas);
+        lv.setAdapter(adaptateur);
+        lv.setOnItemClickListener(this);
     }
 
-    public class ViewHolder {
-        private ImageView img;
-        private TextView nombre;
-        private TextView web;
-        private TextView localizacion;
-        private TextView mail;
-
-        public TextView getWeb() {
-            return web;
-        }
-
-        public void setWeb(TextView web) {
-            this.web = web;
-        }
-
-        public TextView getLocalizacion() {
-            return localizacion;
-        }
-
-        public void setLocalizacion(TextView localizacion) {
-            this.localizacion = localizacion;
-        }
-
-        public TextView getMail() {
-            return mail;
-        }
-
-        public void setMail(TextView mail) {
-            this.mail = mail;
-        }
-
-
-        public TextView getTv() {
-            return nombre;
-        }
-
-        public void setTv(TextView nombre) {
-            this.nombre = nombre;
-        }
-
-        public ImageView getImg() {
-            return img;
-        }
-
-        public void setImg(ImageView img) {
-            this.img = img;
-        }
-
-        public ViewHolder(TextView nombre, TextView web, TextView localizacion, TextView mail, ImageView img) {
-            this.nombre = nombre;
-            this.web = web;
-            this.localizacion = localizacion;
-            this.mail = mail;
-            this.img = img;
-        }
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        navigateUpTo()
     }
-
-    public class NewViewHolder {
-        private ImageView img;
-        private TextView nombre;
-        private TextView cnae;
-
-        public NewViewHolder(ImageView img, TextView nombre, TextView cnae) {
-            this.img = img;
-            this.nombre = nombre;
-            this.cnae = cnae;
-        }
-
-        public ImageView getImg() {
-            return img;
-        }
-
-        public void setImg(ImageView img) {
-            this.img = img;
-        }
-
-        public TextView getNombre() {
-            return nombre;
-        }
-
-        public void setNombre(TextView nombre) {
-            this.nombre = nombre;
-        }
-
-        public TextView getCnae() {
-            return cnae;
-        }
-
-        public void setCnae(TextView cnae) {
-            this.cnae = cnae;
-        }
-    }
-
-    class MyAdapter<T> extends ArrayAdapter<T> {
-
-        Context context;
-        T[] objects;
+    public class MyAdapter<T> extends ArrayAdapter<T> {
 
         public MyAdapter(@NonNull Context context, int resource, @NonNull T[] objects) {
             super(context, resource, objects);
@@ -145,51 +60,50 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getItemViewType(int position) {
-            int i = 1;
-            if (position == 2 || position == 3) i = 0;
-            return i;
+            return getItem(position) instanceof EmpresaTic ? 1 : 0;
         }
 
 
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//        {
-//            View row = convertView;
-//
-//            LayoutInflater inflater=getLayoutInflater();
-//
-//
-//            if(getItemViewType(position)==0)
-//            {
-//                ViewHolder holder;
-//                if (row==null)
-//                {
-//                    row = inflater.inflate(R.layout.custom_list_layout, parent, false);
-//                    TextView lab    = row.findViewById(R.id.list_item);
-//                    ImageView imgV = row.findViewById(R.id.icon);
-//                    holder=new ViewHolder(lab, imgV);
-//
-//                }else
-//                {
-//                    holder = (ViewHolder) row.getTag();
-//                }
-//            }else
-//            {
-//                NewViewHolder nvh;
-//                if (row==null)
-//                {
-//                    row = inflater.inflate(R.layout.regular_layout, parent, false);
-//                    TextView lab    = row.findViewById(R.id.list_item);
-//                    ImageView imgV  = row.findViewById(R.id.icon);
-//                    nvh=new NewViewHolder(lab,imgV,imgV2);
-//                }else
-//                {
-//                    nvh = (NewViewHolder) row.getTag();
-//                }
-//            }
-//
-//            return(row);
-            return null;
+
+                View row = convertView;
+
+                LayoutInflater inflater = getLayoutInflater();
+
+                if (getItemViewType(position) == 1) {
+                    ViewHolder holder;
+                    if (row == null) {
+                        EmpresaTic empresaTic=(EmpresaTic)getItem(position);
+                        row = inflater.inflate(R.layout.tic_layout, parent, false);
+                        TextView nombre = row.findViewById(R.id.nombre_tv);
+                        TextView web = row.findViewById(R.id.link_tv);
+                        TextView direccion = row.findViewById(R.id.location_tv);
+                        TextView mail = row.findViewById(R.id.mail_tv);
+                        ImageView logo = row.findViewById(R.id.logo);
+                        nombre.setText(empresaTic.getText());
+                        web.setText(empresaTic.getWeb());
+                        direccion.setText(empresaTic.getLocation());
+                        mail.setText(empresaTic.getMail());
+                        logo.setImageResource(empresaTic.getImageId());
+                        holder = new ViewHolder(logo,nombre, web, direccion, mail);
+
+                    } else holder = (ViewHolder) row.getTag();
+                } else if(getItemViewType(position)==0){
+                    NewViewHolder nvh;
+                    if (row == null) {
+                        EmpresaNormal empresaNormal=(EmpresaNormal) getItem(position);
+                        row = inflater.inflate(R.layout.regular_layout, parent, false);
+                        TextView nombre = row.findViewById(R.id.nombre_tv);
+                        ImageView logo = row.findViewById(R.id.logo);
+                        TextView cnae=row.findViewById(R.id.cnae_code);
+                        nombre.setText(empresaNormal.getText());
+                        logo.setImageResource(empresaNormal.getImageId());
+                        cnae.setText(empresaNormal.getCnae());
+                        nvh = new NewViewHolder(logo,nombre, cnae);
+                    } else nvh = (NewViewHolder) row.getTag();
+                }
+                return (row);
         }
     }
 }

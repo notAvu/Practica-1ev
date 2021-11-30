@@ -11,7 +11,6 @@ public class EmpresaTic extends Empresa {
         this.mail=mail;
         this.web=web;
         this.location=location;
-
     }
 
     public String getWeb() {
