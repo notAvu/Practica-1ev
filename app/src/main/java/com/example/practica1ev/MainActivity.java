@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView lv;
     AutoCompleteTextView actv;
     Empresa[] listadoEmpresas = {
-            new EmpresaTic(R.drawable.embeces, "EmpresaTic", "https//enlace_completamente_normal.com", "Calle melancolia 7", "empresaTic@gmail.com"),
-            new EmpresaNormal(R.drawable.embeces, "EmpresaNormal", "055"), new EmpresaNormal(R.drawable.embeces, "LaotraEmpresa", "6024"),
+            new EmpresaTic(R.drawable.aperture, "Aperture Science", "https//enlace_completamente_normal.com", "En un pozo", "apertureLabs@gladOs.com"),
+            new EmpresaNormal(R.drawable.mishima, "Mishima corp", "8559"), new EmpresaNormal(R.drawable.embeces, "LaotraEmpresa", "6024"),
             new EmpresaTic(R.drawable.embeces, "EmpresaRandom", "https//estafa_piramidal.com", "Avda de la plata 23", "empresaFalsa@gmail.com")
     };
 
