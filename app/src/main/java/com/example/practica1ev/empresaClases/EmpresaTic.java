@@ -1,8 +1,6 @@
 package com.example.practica1ev.empresaClases;
 
 public class EmpresaTic extends Empresa {
-    private int imageId;
-    private String text;
     private String web;
     private String location;
     private String mail;

@@ -1,6 +1,6 @@
 package com.example.practica1ev.empresaClases;
 
-public class Empresa {
+public abstract class Empresa {
     private int imageId;
     private String text;
 
