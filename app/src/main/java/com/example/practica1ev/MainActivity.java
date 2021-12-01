@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             return getItem(position) instanceof EmpresaTic ? 1 : 0;
         }
 
-
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
@@ -76,17 +75,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     if (row == null) {
                         EmpresaTic empresaTic=(EmpresaTic)getItem(position);
                         row = inflater.inflate(R.layout.tic_layout, parent, false);
-                        TextView nombre = row.findViewById(R.id.nombre_tv);
-                        TextView web = row.findViewById(R.id.link_tv);
-                        TextView direccion = row.findViewById(R.id.location_tv);
-                        TextView mail = row.findViewById(R.id.mail_tv);
-                        ImageView logo = row.findViewById(R.id.logo);
-                        nombre.setText(empresaTic.getText());
-                        web.setText(empresaTic.getWeb());
-                        direccion.setText(empresaTic.getLocation());
-                        mail.setText(empresaTic.getMail());
-                        logo.setImageResource(empresaTic.getImageId());
-                        holder = new ViewHolder(logo,nombre, web, direccion, mail);
+                        holder =createViewHolder(row, empresaTic);
 
                     } else holder = (ViewHolder) row.getTag();
                 } else if(getItemViewType(position)==0){
@@ -94,16 +83,35 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     if (row == null) {
                         EmpresaNormal empresaNormal=(EmpresaNormal) getItem(position);
                         row = inflater.inflate(R.layout.regular_layout, parent, false);
-                        TextView nombre = row.findViewById(R.id.nombre_tv);
-                        ImageView logo = row.findViewById(R.id.logo);
-                        TextView cnae=row.findViewById(R.id.cnae_code);
-                        nombre.setText(empresaNormal.getText());
-                        logo.setImageResource(empresaNormal.getImageId());
-                        cnae.setText(empresaNormal.getCnae());
-                        nvh = new NewViewHolder(logo,nombre, cnae);
+                        nvh = createNewViewHolder(row, empresaNormal);
                     } else nvh = (NewViewHolder) row.getTag();
                 }
                 return (row);
+        }
+
+        private NewViewHolder createNewViewHolder(View row, EmpresaNormal empresaNormal) {
+            NewViewHolder nvh;
+            TextView nombre = row.findViewById(R.id.nombre_tv);
+            ImageView logo = row.findViewById(R.id.logo);
+            TextView cnae= row.findViewById(R.id.cnae_code);
+            nombre.setText(empresaNormal.getText());
+            logo.setImageResource(empresaNormal.getImageId());
+            cnae.setText(empresaNormal.getCnae());
+            return new NewViewHolder(logo,nombre, cnae);
+        }
+
+        private ViewHolder createViewHolder(View row, EmpresaTic empresaTic) {
+            TextView nombre = row.findViewById(R.id.nombre_tv);
+            TextView web = row.findViewById(R.id.link_tv);
+            TextView direccion = row.findViewById(R.id.location_tv);
+            TextView mail = row.findViewById(R.id.mail_tv);
+            ImageView logo = row.findViewById(R.id.logo);
+            nombre.setText(empresaTic.getText());
+            web.setText(empresaTic.getWeb());
+            direccion.setText(empresaTic.getLocation());
+            mail.setText(empresaTic.getMail());
+            logo.setImageResource(empresaTic.getImageId());
+            return new ViewHolder(logo,nombre, web, direccion, mail);
         }
     }
 }
