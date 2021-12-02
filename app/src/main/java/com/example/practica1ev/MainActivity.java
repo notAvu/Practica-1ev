@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        actv = findViewById(R.id.barra);
         lv = findViewById(R.id.listado);
-        actv=findViewById(R.id.barra);
-        MyAdapter<Empresa> adaptateur= new MyAdapter<>(this, R.layout.regular_layout, listadoEmpresas);
+        MyAdapter<Empresa> adaptateur = new MyAdapter<>(this, R.layout.regular_layout, listadoEmpresas);
         lv.setAdapter(adaptateur);
         lv.setOnItemClickListener(this);
     }
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //        navigateUpTo()
     }
+
     public class MyAdapter<T> extends ArrayAdapter<T> {
 
         public MyAdapter(@NonNull Context context, int resource, @NonNull T[] objects) {
@@ -66,38 +67,38 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-                View row = convertView;
+            View row = convertView;
 
-                LayoutInflater inflater = getLayoutInflater();
+            LayoutInflater inflater = getLayoutInflater();
 
-                if (getItemViewType(position) == 1) {
-                    ViewHolder holder;
-                    if (row == null) {
-                        EmpresaTic empresaTic=(EmpresaTic)getItem(position);
-                        row = inflater.inflate(R.layout.tic_layout, parent, false);
-                        holder =createViewHolder(row, empresaTic);
+            if (getItemViewType(position) == 1) {
+                ViewHolder holder;
+                if (row == null) {
+                    EmpresaTic empresaTic = (EmpresaTic) getItem(position);
+                    row = inflater.inflate(R.layout.tic_layout, parent, false);
+                    holder = createViewHolder(row, empresaTic);
 
-                    } else holder = (ViewHolder) row.getTag();
-                } else if(getItemViewType(position)==0){
-                    NewViewHolder nvh;
-                    if (row == null) {
-                        EmpresaNormal empresaNormal=(EmpresaNormal) getItem(position);
-                        row = inflater.inflate(R.layout.regular_layout, parent, false);
-                        nvh = createNewViewHolder(row, empresaNormal);
-                    } else nvh = (NewViewHolder) row.getTag();
-                }
-                return (row);
+                } else holder = (ViewHolder) row.getTag();
+            } else if (getItemViewType(position) == 0) {
+                NewViewHolder nvh;
+                if (row == null) {
+                    EmpresaNormal empresaNormal = (EmpresaNormal) getItem(position);
+                    row = inflater.inflate(R.layout.regular_layout, parent, false);
+                    nvh = createNewViewHolder(row, empresaNormal);
+                } else nvh = (NewViewHolder) row.getTag();
+            }
+            return (row);
         }
 
         private NewViewHolder createNewViewHolder(View row, EmpresaNormal empresaNormal) {
             NewViewHolder nvh;
             TextView nombre = row.findViewById(R.id.nombre_tv);
             ImageView logo = row.findViewById(R.id.logo);
-            TextView cnae= row.findViewById(R.id.cnae_code);
+            TextView cnae = row.findViewById(R.id.cnae_code);
             nombre.setText(empresaNormal.getText());
             logo.setImageResource(empresaNormal.getImageId());
             cnae.setText(empresaNormal.getCnae());
-            return new NewViewHolder(logo,nombre, cnae);
+            return new NewViewHolder(logo, nombre, cnae);
         }
 
         private ViewHolder createViewHolder(View row, EmpresaTic empresaTic) {
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             direccion.setText(empresaTic.getLocation());
             mail.setText(empresaTic.getMail());
             logo.setImageResource(empresaTic.getImageId());
-            return new ViewHolder(logo,nombre, web, direccion, mail);
+            return new ViewHolder(logo, nombre, web, direccion, mail);
         }
     }
 }
