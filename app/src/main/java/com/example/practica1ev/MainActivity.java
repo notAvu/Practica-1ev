@@ -66,9 +66,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
             View row = convertView;
-
             LayoutInflater inflater = getLayoutInflater();
 
             if (getItemViewType(position) == 1) {
