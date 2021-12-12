@@ -22,15 +22,14 @@ import com.example.practica1ev.empresaClases.EmpresaTic;
 import com.example.practica1ev.viewHolders.NewViewHolder;
 import com.example.practica1ev.viewHolders.ViewHolder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ListView lv;
     AutoCompleteTextView actv;
-    Empresa[] listadoEmpresas = {
-            new EmpresaTic(R.drawable.aperture, "Aperture Science", "https//enlace_completamente_normal.com", "En un pozo", "apertureLabs@gladOs.com"),
-            new EmpresaNormal(R.drawable.mishima, "Mishima corp", "8559"), new EmpresaNormal(R.drawable.embeces, "LaotraEmpresa", "6024"),
-            new EmpresaTic(R.drawable.embeces, "EmpresaRandom", "https//estafa_piramidal.com", "Avda de la plata 23", "empresaFalsa@gmail.com")
-    };
+    ArrayList<Empresa> arrayListEmpresa= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         actv = findViewById(R.id.barra);
         lv = findViewById(R.id.listado);
-        MyAdapter<Empresa> adaptateur = new MyAdapter<>(this, R.layout.regular_layout, listadoEmpresas);
+        arrayListEmpresa.add(new EmpresaTic(R.drawable.aperture, "Aperture Science", "https//enlace_completamente_normal.com", "En un pozo", "apertureLabs@gladOs.com"));
+        arrayListEmpresa.add(new EmpresaNormal(R.drawable.mishima, "Mishima corp", "8559"));
+        arrayListEmpresa.add( new EmpresaTic(R.drawable.oscorp, "Oscorp", "https//estafa_piramidal.com", "Avda de la plata 23", "empresaFalsa@gmail.com"));
+        arrayListEmpresa.add(new EmpresaNormal(R.drawable.embeces, "LaotraEmpresa", "6024"));
+        arrayListEmpresa.add(new EmpresaNormal(R.drawable.embeces, "LaotraEmpresa", "6024"));
+        MyAdapter<Empresa> adaptateur = new MyAdapter<>(this, R.layout.regular_layout, arrayListEmpresa);
         lv.setAdapter(adaptateur);
         lv.setOnItemClickListener(this);
     }
@@ -51,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public class MyAdapter<T> extends ArrayAdapter<T> {
 
         public MyAdapter(@NonNull Context context, int resource, @NonNull T[] objects) {
+            super(context, resource, objects);
+        }
+        public MyAdapter(@NonNull Context context, int resource, @NonNull List<T> objects){
             super(context, resource, objects);
         }
 
