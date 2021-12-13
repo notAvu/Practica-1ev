@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/aperture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nombre_empresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="Texto de ejemplo"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@id/logo"
+        app:layout_constraintLeft_toRightOf="@id/logo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/logo" />
+
+    <GridLayout
+        android:id="@+id/contact_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:columnCount="2"
+        android:rowCount="4"
+        android:paddingBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/logo"
+        app:layout_constraintRight_toRightOf="@id/nombre_empresa"
+        app:layout_constraintTop_toBottomOf="@id/logo">
+
+        <TextView
+            android:id="@+id/direccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:paddingHorizontal="25dp"
+            android:text="@string/location_tag"
+
+            android:paddingVertical="30dp"/>
+
+        <EditText
+            android:id="@+id/edit_direccion"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:minWidth="100dp"
+
+            android:paddingVertical="30dp"/>
+
+        <TextView
+            android:id="@+id/tlfn_contacto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:paddingHorizontal="25dp"
+            android:text="@string/contact_tlfn"
+
+            android:paddingVertical="30dp"/>
+
+        <EditText
+            android:id="@+id/edit_tlfn"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:inputType="phone"
+            android:minWidth="100dp"
+
+            android:paddingVertical="30dp"/>
+
+        <TextView
+            android:id="@+id/mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:paddingHorizontal="25dp"
+            android:text="@string/contact_mail_tag"
+
+            android:paddingVertical="30dp"/>
+
+        <EditText
+            android:id="@+id/edit_mail"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:inputType="phone"
+            android:minWidth="100dp"
+
+            android:paddingVertical="30dp"/>
+
+        <TextView
+            android:id="@+id/web_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:paddingHorizontal="25dp"
+            android:text="@string/web_tag"
+
+            android:paddingVertical="30dp"/>
+
+        <TextView
+            android:id="@+id/web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:paddingHorizontal="25dp"
+
+            android:paddingVertical="30dp"/>
+    </GridLayout>
+    <Button
+        android:id="@+id/next_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contacts_btn_tag"
+        app:layout_constraintTop_toBottomOf="@id/contact_info"
+        app:layout_constraintRight_toRightOf="@id/nombre_empresa"
+        app:layout_constraintLeft_toRightOf="@id/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <Button
+        app:layout_constraintTop_toTopOf="@id/next_activity"
+        app:layout_constraintLeft_toLeftOf="@id/logo"
+        app:layout_constraintRight_toRightOf="@id/logo"
+        app:layout_constraintBottom_toBottomOf="@id/next_activity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

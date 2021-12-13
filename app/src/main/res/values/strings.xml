@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Practica 1ev</string>
+    <string name="contact_tlfn">Telefono de contacto:</string>
+    <string name="location_tag">Direccion:</string>
+    <string name="contact_mail_tag">Correo de contacto:</string>
+    <string name="web_tag">Pagina web</string>
+    <string name="contacts_btn_tag">personas de contacto</string>
 </resources>

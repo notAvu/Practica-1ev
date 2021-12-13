@@ -3,8 +3,10 @@ package com.example.practica1ev;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         arrayListEmpresa.add(new EmpresaNormal(R.drawable.mishima, "Mishima corp", "8559"));
         arrayListEmpresa.add( new EmpresaTic(R.drawable.oscorp, "Oscorp", "https//estafa_piramidal.com", "Avda de la plata 23", "empresaFalsa@gmail.com"));
         arrayListEmpresa.add(new EmpresaNormal(R.drawable.embeces, "LaotraEmpresa", "6024"));
-        arrayListEmpresa.add(new EmpresaNormal(R.drawable.embeces, "LaotraEmpresa", "6024"));
+        arrayListEmpresa.add(new EmpresaNormal(R.drawable.embeces, "Esta Empresa", "6024"));
         MyAdapter<Empresa> adaptateur = new MyAdapter<>(this, R.layout.regular_layout, arrayListEmpresa);
         lv.setAdapter(adaptateur);
         lv.setOnItemClickListener(this);
@@ -49,8 +51,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        navigateUpTo()
-    }
+        Intent i = new Intent(MainActivity.this, DetailsTic.class);
+        startActivity(i);    }
 
     public class MyAdapter<T> extends ArrayAdapter<T> {
 
