@@ -1,6 +1,9 @@
 package com.example.practica1ev.empresaClases;
 
-public class EmpresaTic extends Empresa {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class EmpresaTic extends Empresa implements Parcelable {
     private String web;
     private String location;
     private String mail;
@@ -12,6 +15,27 @@ public class EmpresaTic extends Empresa {
         this.web=web;
         this.location=location;
     }
+
+    protected EmpresaTic(Parcel in) {
+        super();
+        setText(in.readString());
+        setImageId(in.readInt());
+        web = in.readString();
+        location = in.readString();
+        mail = in.readString();
+    }
+
+    public static final Creator<EmpresaTic> CREATOR = new Creator<EmpresaTic>() {
+        @Override
+        public EmpresaTic createFromParcel(Parcel in) {
+            return new EmpresaTic(in);
+        }
+
+        @Override
+        public EmpresaTic[] newArray(int size) {
+            return new EmpresaTic[size];
+        }
+    };
 
     public String getWeb() {
         return web;
@@ -35,5 +59,17 @@ public class EmpresaTic extends Empresa {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(web);
+        dest.writeString(location);
+        dest.writeString(mail);
     }
 }

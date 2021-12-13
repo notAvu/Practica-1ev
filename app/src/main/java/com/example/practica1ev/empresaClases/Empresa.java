@@ -10,6 +10,11 @@ public abstract class Empresa {
         this.text=txt;
 
     }
+
+    public Empresa() {
+
+    }
+
     public int getImageId() {
         return imageId;
     }
