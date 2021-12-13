@@ -54,8 +54,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent i = new Intent(MainActivity.this, DetailsTic.class);
-
-        startActivity(i);    }
+        i.putExtra("empresaurio", (Parcelable) arrayListEmpresa.get(position));
+        startActivity(i);
+    }
 
     public class MyAdapter<T> extends ArrayAdapter<T> {
 
