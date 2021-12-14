@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.practica1ev.empresaClases.EmpresaTic;
+
+import org.w3c.dom.Text;
 
 public class DetailsTic extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,10 +27,10 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_tic);
-        locationButton= findViewById(R.id.loc_button);
+        locationButton = findViewById(R.id.loc_button);
         ImageView logo = findViewById(R.id.logo);
         TextView tv = findViewById(R.id.nombre_empresa);
-        EditText mail = findViewById(R.id.edit_mail);
+        TextView mail = findViewById(R.id.edit_mail);
         EditText tlfn = findViewById(R.id.edit_tlfn);
         EditText direccion = findViewById(R.id.edit_direccion);
         web = findViewById(R.id.web);
@@ -53,24 +56,22 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
 
     private void launchNavigator(String url) {
         Intent i;
-        Uri embeces=Uri.parse(url);
-        i=new Intent(Intent.ACTION_VIEW, embeces);
+        Uri embeces = Uri.parse(url);
+        i = new Intent(Intent.ACTION_VIEW, embeces);
         startActivity(i);
     }
 
     private void launchGoogleMaps() {
         Intent i;
+//      try {
         Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
         i = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         i.setPackage("com.google.android.apps.maps");
-//            if (i.resolveActivity(getPackageManager()) != null) {
-        startActivity(i);
-//            }
+            startActivity(i);
+//        } catch (Exception e) {
+//            Toast t= new Toast(this.getApplicationContext());
+//            t.setText("No tenes Google Maps webon");
+//            t.show();
+//        }
     }
 }
-//    Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
-//    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//mapIntent.setPackage("com.google.android.apps.maps");
-//        if (mapIntent.resolveActivity(getPackageManager()) != null) {
-//        startActivity(mapIntent);
-//        }
