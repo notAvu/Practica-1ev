@@ -1,13 +1,15 @@
 package com.example.practica1ev.empresaClases;
 
-public abstract class Empresa {
+import android.os.Parcelable;
+
+public abstract class Empresa implements Parcelable {
     private int imageId;
-    private String text;
+    private String name;
 
     public Empresa(int id, String txt)
     {
         this.imageId=id;
-        this.text=txt;
+        this.name =txt;
 
     }
 
@@ -22,16 +24,16 @@ public abstract class Empresa {
         this.imageId = imageId;
     }
 
-    public String getText() {
-        return text;
+    public String getName() {
+        return name;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return text;
+        return name;
     }
 }

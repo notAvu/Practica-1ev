@@ -1,6 +1,9 @@
 package com.example.practica1ev.empresaClases;
 
-public class EmpresaNormal extends Empresa{
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class EmpresaNormal extends Empresa implements Parcelable {
 
     private String cnae;
 
@@ -15,5 +18,15 @@ public class EmpresaNormal extends Empresa{
 
     public void setCnae(String cnae) {
         this.cnae = cnae;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

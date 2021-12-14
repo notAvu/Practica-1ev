@@ -18,8 +18,8 @@ public class EmpresaTic extends Empresa implements Parcelable {
 
     protected EmpresaTic(Parcel in) {
         super();
-        setText(in.readString());
         setImageId(in.readInt());
+        setName(in.readString());
         web = in.readString();
         location = in.readString();
         mail = in.readString();
@@ -68,6 +68,8 @@ public class EmpresaTic extends Empresa implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(getImageId());
+        dest.writeString(getName());
         dest.writeString(web);
         dest.writeString(location);
         dest.writeString(mail);
