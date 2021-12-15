@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -24,7 +25,7 @@ import com.example.practica1ev.viewHolders.ViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListadoPersonasActivity extends AppCompatActivity {
+public class ListadoPersonasActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ArrayList<Persona> nombres;
     Spinner spinner;
@@ -40,10 +41,21 @@ public class ListadoPersonasActivity extends AppCompatActivity {
         nombres.add(new Persona("Angel", "606776629", "Director", "nomas@gmail.com"));
         nombres.add(new Persona("Mar", "606776629", "FAQ", "nomas@gmail.com"));
         nombres.add(new Persona("Antonio", "606776629", "Sabio", "nomas@gmail.com"));
-        spinner.setAdapter(new PersonasAdapter<>(this, R.layout.persona_cargo_layout, nombres));
+        PersonasAdapter<Persona>adapter=new PersonasAdapter<>(ListadoPersonasActivity.this, R.layout.persona_cargo_layout,nombres);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
     }
 
     public class PersonasAdapter<T> extends ArrayAdapter<T> {
+
+        public PersonasAdapter(@NonNull Context context, int resource, @NonNull T[] objects) {
+            super(context, resource, objects);
+        }
 
         public PersonasAdapter(@NonNull Context context, int resource, @NonNull List<T> objects) {
             super(context, resource, objects);
@@ -58,10 +70,23 @@ public class ListadoPersonasActivity extends AppCompatActivity {
                 Persona persona = (Persona) getItem(position);
                 row = inflater.inflate(R.layout.persona_cargo_layout, parent, false);
                 holder = createViewHolder(row, persona);
-            } else holder = (PersonasViewHolder) row.getTag();
-            return (row);
+                row.setTag(holder);
+            } else {holder = (PersonasViewHolder) row.getTag();}
+            return row;
         }
-
+        @Override
+        public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            View row = convertView;
+            LayoutInflater inflater = getLayoutInflater();
+            PersonasViewHolder holder;
+            if (row == null) {
+                Persona persona = (Persona) getItem(position);
+                row = inflater.inflate(R.layout.persona_cargo_layout, parent, false);
+                holder = createViewHolder(row, persona);
+                row.setTag(holder);
+            } else {holder = (PersonasViewHolder) row.getTag();}
+            return row;
+        }
         private PersonasViewHolder createViewHolder(View row, Persona persona) {
             TextView nombre = row.findViewById(R.id.persona_cargo__tv__nombre);
             TextView cargo= row.findViewById(R.id.persona_cargo__tv__cargo);

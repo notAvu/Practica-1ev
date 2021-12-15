@@ -13,6 +13,53 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:spinnerMode="dropdown"
         />
+    <TextView
+        android:id="@+id/listado_personas__label__nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/leSpinner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="150dp"
+        android:text="Nombre:"/>
+    <TextView
+        android:id="@+id/listado_personas__label__cargo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/listado_personas__label__nombre"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:text="Cargo:"/>
+    <TextView
+        android:id="@+id/listado_personas__label__telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/listado_personas__label__cargo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:text="Telefono:"/>
+    <TextView
+        android:id="@+id/listado_personas__label__mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/listado_personas__label__telefono"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:text="Mail:"/>
+    <TextView
+        android:id="@+id/listado_personas__nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/leSpinner"
+        app:layout_constraintLeft_toRightOf="@id/listado_personas__label__nombre"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="150dp"
+        android:text="Nombre"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
