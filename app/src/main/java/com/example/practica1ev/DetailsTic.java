@@ -17,7 +17,7 @@ import com.example.practica1ev.empresaClases.EmpresaTic;
 public class DetailsTic extends AppCompatActivity implements View.OnClickListener {
 
     TextView web;
-    ImageButton locationButton;
+    Button locationButton;
     Button nextButton;
     EmpresaTic eie;
     TextView mail;

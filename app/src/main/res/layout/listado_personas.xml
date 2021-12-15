@@ -15,51 +15,98 @@
         app:layout_constraintRight_toRightOf="parent"
         android:spinnerMode="dropdown"
         />
-    <TextView
-        android:id="@+id/listado_personas__label__nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/leSpinner"
+    <GridLayout
+        app:layout_constraintTop_toTopOf="@id/leSpinner"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="25dp"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="150dp"
-        android:text="Nombre:"/>
-    <TextView
-        android:id="@+id/listado_personas__label__cargo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/listado_personas__label__nombre"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        android:text="Cargo:"/>
-    <TextView
-        android:id="@+id/listado_personas__label__telefono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/listado_personas__label__cargo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        android:text="Telefono:"/>
-    <TextView
-        android:id="@+id/listado_personas__label__mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/listado_personas__label__telefono"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        android:text="Mail:"/>
-    <TextView
-        android:id="@+id/listado_personas__nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/leSpinner"
-        app:layout_constraintLeft_toRightOf="@id/listado_personas__label__nombre"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="150dp"
-        android:text="Nombre"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="4"
+        android:columnCount="2"
+        >
+
+        <TextView
+            android:id="@+id/listado_personas__label__nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:layout_row="0"
+            android:layout_column="0"
+             />
+
+        <TextView
+            android:id="@+id/listado_personas__label__cargo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:text="Cargo:" />
+
+        <TextView
+            android:id="@+id/listado_personas__label__telefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:text="Telefono:"/>
+
+        <TextView
+            android:id="@+id/listado_personas__label__mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:text="Mail:" />
+
+        <TextView
+            android:id="@+id/listado_personas__nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:text="Nombre" />
+
+        <TextView
+            android:id="@+id/listado_personas__cargo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:text="Cargo" />
+
+        <TextView
+            android:id="@+id/listado_personas__tlfn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:text="Tlfn" />
+
+        <TextView
+            android:id="@+id/listado_personas__mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:text="Mail" />
+
+    </GridLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

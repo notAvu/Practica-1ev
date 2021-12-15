@@ -25,10 +25,14 @@ import com.example.practica1ev.viewHolders.ViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListadoPersonasActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ListadoPersonasActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ArrayList<Persona> nombres;
     Spinner spinner;
+    TextView nombreTv;
+    TextView cargoTv;
+    TextView telefonoTv;
+    TextView mailTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +45,26 @@ public class ListadoPersonasActivity extends AppCompatActivity implements Adapte
         nombres.add(new Persona("Angel", "606776629", "Director", "nomas@gmail.com"));
         nombres.add(new Persona("Mar", "606776629", "FAQ", "nomas@gmail.com"));
         nombres.add(new Persona("Antonio", "606776629", "Sabio", "nomas@gmail.com"));
-        PersonasAdapter<Persona>adapter=new PersonasAdapter<>(ListadoPersonasActivity.this, R.layout.persona_cargo_layout,nombres);
+        nombreTv = findViewById(R.id.listado_personas__nombre);
+        cargoTv = findViewById(R.id.listado_personas__cargo);
+        telefonoTv = findViewById(R.id.listado_personas__tlfn);
+        mailTv = findViewById(R.id.listado_personas__mail);
+        PersonasAdapter<Persona> adapter = new PersonasAdapter<>(ListadoPersonasActivity.this, R.layout.persona_cargo_layout, nombres);
         spinner.setAdapter(adapter);
-        spinner.setOnItemClickListener(this);
+        spinner.setOnItemSelectedListener(this);
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Persona select = nombres.get(i);
+        nombreTv.setText(select.getNombre());
+        cargoTv.setText(select.getCargo());
+        telefonoTv.setText(select.getTelefono());
+        mailTv.setText(select.getMail());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
@@ -71,9 +88,12 @@ public class ListadoPersonasActivity extends AppCompatActivity implements Adapte
                 row = inflater.inflate(R.layout.persona_cargo_layout, parent, false);
                 holder = createViewHolder(row, persona);
                 row.setTag(holder);
-            } else {holder = (PersonasViewHolder) row.getTag();}
+            } else {
+                holder = (PersonasViewHolder) row.getTag();
+            }
             return row;
         }
+
         @Override
         public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View row = convertView;
@@ -84,15 +104,18 @@ public class ListadoPersonasActivity extends AppCompatActivity implements Adapte
                 row = inflater.inflate(R.layout.persona_cargo_layout, parent, false);
                 holder = createViewHolder(row, persona);
                 row.setTag(holder);
-            } else {holder = (PersonasViewHolder) row.getTag();}
+            } else {
+                holder = (PersonasViewHolder) row.getTag();
+            }
             return row;
         }
+
         private PersonasViewHolder createViewHolder(View row, Persona persona) {
             TextView nombre = row.findViewById(R.id.persona_cargo__tv__nombre);
-            TextView cargo= row.findViewById(R.id.persona_cargo__tv__cargo);
+            TextView cargo = row.findViewById(R.id.persona_cargo__tv__cargo);
             nombre.setText(persona.getNombre());
             cargo.setText(persona.getCargo());
-            return new PersonasViewHolder (nombre, cargo);
+            return new PersonasViewHolder(nombre, cargo);
         }
     }
 }
