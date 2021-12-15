@@ -18,6 +18,7 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
 
     TextView web;
     ImageButton locationButton;
+    Button nextButton;
     EmpresaTic eie;
     TextView mail;
     TextView tv;
@@ -34,6 +35,7 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
     }
 
     private void findViews() {
+        nextButton=findViewById(R.id.next_activity);
         locationButton = findViewById(R.id.loc_button);
         logo = findViewById(R.id.logo);
         tv = findViewById(R.id.nombre_empresa);
@@ -53,6 +55,7 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
         locationButton.setOnClickListener(this);
         web.setOnClickListener(this);
         mail.setOnClickListener(this);
+        nextButton.setOnClickListener(this);
     }
 
 
@@ -61,12 +64,20 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()) {
             case (R.id.web): {
                 launchNavigator(eie.getWeb());
+                break;
             }
             case (R.id.loc_button): {
                 launchGoogleMaps();
+                break;
             }
-            case(R.id.edit_mail):{
+            case (R.id.edit_mail): {
                 launchMail(eie.getMail());
+                break;
+            }
+            case (R.id.next_activity): {
+                Intent i = new Intent(this, ListadoPersonasActivity.class);
+                startActivity(i);
+                break;
             }
         }
     }
@@ -74,7 +85,7 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
     private void launchMail(String mail) {
         Intent i = new Intent(Intent.ACTION_SENDTO);
         i.setData(Uri.parse("mailto:"));
-        i.putExtra(Intent.EXTRA_EMAIL,mail);
+        i.putExtra(Intent.EXTRA_EMAIL, mail);
         startActivity(i);
     }
 
@@ -87,7 +98,7 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
 
     private void launchGoogleMaps() {
         Intent i;
-        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
+        Uri gmmIntentUri = Uri.parse("geo:69.5006939,-53.9414473");
         i = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         i.setPackage("com.google.android.apps.maps");
         startActivity(i);

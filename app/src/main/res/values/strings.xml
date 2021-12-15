@@ -4,5 +4,6 @@
     <string name="location_tag">Direccion:</string>
     <string name="contact_mail_tag">Correo de contacto:</string>
     <string name="web_tag">Pagina web</string>
-    <string name="contacts_btn_tag">personas de contacto</string>
+    <string name="contacts_btn_tag">Personas</string>
+    <string name="guardar_info">Guardar Info</string>
 </resources>

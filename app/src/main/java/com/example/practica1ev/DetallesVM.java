@@ -9,8 +9,9 @@ public class DetallesVM extends ViewModel {
 
     MutableLiveData<EmpresaTic> ticMutableLiveData;
 
-    public DetallesVM(MutableLiveData<EmpresaTic> ticMutableLiveData) {
-        this.ticMutableLiveData = ticMutableLiveData;
+    public DetallesVM(EmpresaTic ticMutableLiveData) {
+        this.ticMutableLiveData= new MutableLiveData<>();
+        this.ticMutableLiveData.postValue(ticMutableLiveData);
     }
 
     public MutableLiveData<EmpresaTic> getTicMutableLiveData() {
