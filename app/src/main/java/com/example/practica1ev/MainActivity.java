@@ -45,9 +45,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         lv = findViewById(R.id.listado);
         listadoEmpresa.add(new EmpresaTic(R.drawable.aperture, "Aperture Science", "https://es.wikipedia.org/wiki/Aperture_Science", "En un pozo", "apertureLabs@gladOs.com"));
         listadoEmpresa.add(new EmpresaNormal(R.drawable.mishima, "Mishima corp", "8559"));
-        listadoEmpresa.add(new EmpresaTic(R.drawable.oscorp, "Oscorp", "https://www.oscorp-industries.com/", "Avda de la plata 23", "empresaFalsa@gmail.com"));
+        listadoEmpresa.add(new EmpresaTic(R.drawable.oscorp, "Oscorp", "https://www.oscorp-industries.com/", "Avda de la plata 23", "empresafalsa@gmail.com"));
         listadoEmpresa.add(new EmpresaNormal(R.drawable.saboresdelatierra, "Sabores de la tierra", "6024"));
         listadoEmpresa.add(new EmpresaNormal(R.drawable.embeces, "Esta Empresa", "6024"));
+        listadoEmpresa.add(new EmpresaNormal(R.drawable.embeces, "Esta Empresa", "6024"));
+        listadoEmpresa.add(new EmpresaNormal(R.drawable.saboresdelatierra, "Sabores de la tierra", "6024"));
+        listadoEmpresa.add(new EmpresaTic(R.drawable.oscorp, "Oscorp", "https://www.oscorp-industries.com/", "Avda de la plata 23", "empresafalsa@gmail.com"));
         adaptateur = new MyAdapter<>(this, R.layout.regular_layout, listadoEmpresa);
         lv.setAdapter(adaptateur);
         autoCompleteTv.setAdapter(adaptateur);
@@ -189,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         public Filter getFilter() {
             return this.filter;
         }
-
     }
 
     class MyTextWatcher implements TextWatcher {
