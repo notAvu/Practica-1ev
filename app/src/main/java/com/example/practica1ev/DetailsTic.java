@@ -28,7 +28,7 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
     ImageView logo;
     EditText tlfn;
     EditText direccion;
-    DetallesVM viewModel;
+//    DetallesVM viewModel;
 
     private void initViews() {
         tv.setText(empresa.getName());
@@ -56,22 +56,22 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.details_tic);
         findViews();
         initViews();
-        viewModel = new ViewModelProvider(this).get(DetallesVM.class);
-        viewModel.getTicMutableLiveData().observe(this, this::onEmpresaChanged);
         locationButton.setOnClickListener(this);
         web.setOnClickListener(this);
         mail.setOnClickListener(this);
         nextButton.setOnClickListener(this);
+//        viewModel = new ViewModelProvider(this).get(DetallesVM.class);
+//        viewModel.getTicMutableLiveData().observe(this, this::onEmpresaChanged);
     }
 
-    private void onEmpresaChanged(EmpresaTic empresaTic) {
-        empresa = empresaTic;
-        tv.setText(empresa.getName());
-        logo.setImageResource(empresa.getImageId());
-        mail.setText(empresa.getMail());
-        web.setText(empresa.getWeb());
-        direccion.setText(empresa.getLocation());
-    }
+//    private void onEmpresaChanged(EmpresaTic empresaTic) {
+//        empresa = empresaTic;
+//        tv.setText(empresa.getName());
+//        logo.setImageResource(empresa.getImageId());
+//        mail.setText(empresa.getMail());
+//        web.setText(empresa.getWeb());
+//        direccion.setText(empresa.getLocation());
+//    }
 
 
     @Override
@@ -96,7 +96,7 @@ public class DetailsTic extends AppCompatActivity implements View.OnClickListene
                 break;
             }
             case (R.id.save_btn): {
-                viewModel.getTicMutableLiveData().postValue(empresa);
+//                viewModel.getTicMutableLiveData().postValue(empresa);
                 Toast t = new Toast(this);
                 t.setText("Se han guardado los datos");
                 t.show();
